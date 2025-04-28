@@ -12,9 +12,9 @@ USER_DATA = {
 }
 
 def home(request):
-    text = """
-    <h1>"Изучаем django"</h1>
-    <strong>Автор:</strong> <i>Иванов И. П.</i>
+    text = f"""
+    <h1>Изучаем django</h1>
+    <strong>Автор:</strong> <a href="/about/"><i>{USER_DATA['first_name']} {USER_DATA['middle_name']} {USER_DATA['last_name']}</i></a>
     """
     return HttpResponse(text)
 
