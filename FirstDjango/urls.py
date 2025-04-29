@@ -6,4 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
     path('about/', views.about),
+    path('item/<int:item_id>/', views.show_item),
 ]
