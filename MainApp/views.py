@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Item
+
 
 # Create your views here.
 
@@ -11,12 +13,15 @@ USER_DATA = {
     'email': 'vasya@mail.ru'
 }
 ITEMS = [
-    {"id": 1, "name": "Кроссовки Adidas"},
-    {"id": 2, "name": "Куртка кожаная"},
-    {"id": 3, "name": "Coca-Cola 1 литр"},
-    {"id": 4, "name": "Картофель фри"},
-    {"id": 5, "name": "Кепка"},  
+    {"id": 1, "name": "Кроссовки Adidas","quantity": 5},
+    {"id": 2, "name": "Куртка кожаная", "quantity": 2},
+    {"id": 3, "name": "Coca-Cola 1 литр", "quantity": 3},
+    {"id": 4, "name": "Картофель фри", "quantity": 4},
+    {"id": 5, "name": "Кепка", "quantity": 1},  
 ]
+
+def list_items(request):
+    return render(request, 'index.html', {'items': ITEMS})
 
 
 
@@ -71,3 +76,12 @@ def item_list(request):
 
     item_html += '<p><a href="/">Вернуться на главную страницу</a></p>'
     return HttpResponse(html_content+item_html)
+
+def show_item(request, item_id):
+    item = (Item, pk=item_id)
+    context = {'item': item}
+    return render(request, 'index.html', context)
+
+
+
+
