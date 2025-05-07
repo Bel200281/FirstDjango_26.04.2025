@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о товаре</title>
+</head>
+
+<body>
+<h1>{{ item.name }}</h1>
+<p>Количество: {{ item.quantity }} шт.</p>
+<a href="{% url 'home' %}">Вернуться на главную страницу</a>
+</body>
+
+</html>

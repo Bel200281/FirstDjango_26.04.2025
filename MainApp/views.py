@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Item
+
 
 
 # Create your views here.
@@ -12,6 +12,7 @@ USER_DATA = {
     'phone': '8-923-600-01-02',
     'email': 'vasya@mail.ru'
 }
+
 ITEMS = [
     {"id": 1, "name": "Кроссовки Adidas","quantity": 5},
     {"id": 2, "name": "Куртка кожаная", "quantity": 2},
@@ -20,8 +21,8 @@ ITEMS = [
     {"id": 5, "name": "Кепка", "quantity": 1},  
 ]
 
-def list_items(request):
-    return render(request, 'index.html', {'items': ITEMS})
+def test(request):
+    return render(request, 'test_page.html')
 
 
 
@@ -55,16 +56,15 @@ def  about(request):
     return HttpResponse(html_content+ back_link)
 
 def show_item(request, item_id):
-    found_items = [item for item in ITEMS if item["id"]== int(item_id)]
-    if found_items:
-        item = found_items[0]
-        content = f"""
-        <h2>Название товара: {item['name']}</h2>
-        <a href="/items/">Назад к списку товаров</a>
-        """
-        return HttpResponse (content)
-    else:
-        return HttpResponse (f"Товара с номером: {item_id} не найден.", status= 404)
+    try:
+        item = next((item for item in ITEMS if item["id"] == int(item_id)), None)
+        if not item:
+            raise ValueError("Товар не найден")
+        
+        context = {'item': item}
+        return render(request, 'item.html', context)
+    except Exception as e:
+        return HttpResponse(f"{e}", status=404)
     
 
 def item_list(request):
@@ -77,10 +77,6 @@ def item_list(request):
     item_html += '<p><a href="/">Вернуться на главную страницу</a></p>'
     return HttpResponse(html_content+item_html)
 
-def show_item(request, item_id):
-    item = (Item, pk=item_id)
-    context = {'item': item}
-    return render(request, 'index.html', context)
 
 
 
