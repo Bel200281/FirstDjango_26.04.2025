@@ -32,12 +32,11 @@ def home(request):
     <strong>Автор:</strong> <a href="/about/"><i>{USER_DATA['first_name']} {USER_DATA['middle_name']} {USER_DATA['last_name']}</i></a>
 
     """
-
     items = ITEMS
     html_content = '<h1>Товары:</h1>'
     html_content += '<ul>'
     for item in items:
-        html_content += f'<li><a href="/item/{item["id"]}/">{item["name"]}</a></li>'
+        html_content += f'<li><a href="/item/{item["id"]}/">{item["name"]}</a></li>'  # ссылка
     html_content += '</ul>'
     
     return HttpResponse(text + html_content)
