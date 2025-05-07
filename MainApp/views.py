@@ -2,9 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-
-# Create your views here.
-
 USER_DATA = {
     'first_name': 'Иван',
     'middle_name':'Петрович',
@@ -37,7 +34,10 @@ def home(request):
     html_content += '<ul>'
     for item in items:
         html_content += f'<li><a href="/item/{item["id"]}/">{item["name"]}</a></li>'  # ссылка
+        
     html_content += '</ul>'
+
+    html_content += f'<a href="/items/">Посмотреть полный список товаров</a>'
     
     return HttpResponse(text + html_content)
 
