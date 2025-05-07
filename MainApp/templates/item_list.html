@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список товаров</title>
+</head>
+<body>
+    <h1>Полный список товаров</h1>
+    {% for item in items %}
+        <p>№{{ forloop.counter }}. {{ item.name }} (количество: {{ item.quantity }})</p>
+    {% endfor %}
+    <a href="{% url 'home' %}">Вернуться на главную страницу</a>
+</body>
+</html>

@@ -68,14 +68,8 @@ def show_item(request, item_id):
     
 
 def item_list(request):
-    html_content = '<h1>Товары:</h1>'
-    item_html = '<ol>'
-    for item in ITEMS:
-        item_html += f'<li><a href="/item/{item["id"]}/">{item["name"]}</a></li>'
-    item_html += '</ol>'
-
-    item_html += '<p><a href="/">Вернуться на главную страницу</a></p>'
-    return HttpResponse(html_content+item_html)
+    context = {'items': ITEMS}
+    return render(request, 'item_list.html', context)
 
 
 
