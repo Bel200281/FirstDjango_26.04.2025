@@ -15,7 +15,7 @@ ITEMS = [
     {"id": 2, "name": "Куртка кожаная", "quantity": 2},
     {"id": 3, "name": "Coca-Cola 1 литр", "quantity": 3},
     {"id": 4, "name": "Картофель фри", "quantity": 4},
-    {"id": 5, "name": "Кепка", "quantity": 1},  
+    {"id": 5, "name": "Кепка", "quantity": 0},  
 ]
 
 def test(request):

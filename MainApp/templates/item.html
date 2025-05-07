@@ -8,7 +8,15 @@
 
 <body>
 <h1>{{ item.name }}</h1>
-<p>Количество: {{ item.quantity }} шт.</p>
+
+<p>Количество: 
+    {% if item.quantity > 0 %}
+        {{ item.quantity }}
+    {% else %}
+        товар отсутствует
+    {% endif %}
+</p>
+
 
 <a href="/items/">Посмотреть полный список товаров</a><br>
 
